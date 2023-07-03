@@ -23,7 +23,7 @@ impl File {
         }
     }
 
-    fn read(&mut self, py: &Python)-> PyResult<&PyBytes> {
+    fn read(&mut self, py: Python<'_>)-> PyResult<&PyBytes> {
         let mut buffer = Vec::new();
         self.file.read_to_end(&mut buffer).unwrap();
         Ok(&PyBytes::new(py, &buffer))
