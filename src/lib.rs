@@ -1,5 +1,5 @@
 use pyo3::prelude::*;
-use std:fs;
+use std::fs;
 
 /// Formats the sum of two numbers as string.
 #[pyfunction]
