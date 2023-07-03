@@ -17,7 +17,7 @@ impl File {
     #[new]
     fn open(path: &str) -> Self {
         Self {
-            file: fs::File::opem(path).unwrap()
+            file: fs::File::open(path).unwrap()
         }
     }
 }
@@ -27,5 +27,6 @@ impl File {
 #[pymodule]
 fn rfst(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(sum_as_string, m)?)?;
+    m.add_class::<File>()?;
     Ok(())
 }
