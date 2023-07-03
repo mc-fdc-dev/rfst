@@ -20,6 +20,12 @@ impl File {
             file: fs::File::open(path).unwrap()
         }
     }
+
+    fn read(&mut self)-> PyResult<Vec<u8>> {
+        let mut buffer = Vec::new();
+        self.file.read_to_end(&mut buffer).unwrap();
+        Ok(buffer)
+    }
 }
 
 
