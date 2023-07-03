@@ -1,4 +1,5 @@
 use pyo3::prelude::*;
+use pyo3::types::PyBytes;
 use std::fs;
 use std::io::Read;
 
@@ -22,10 +23,10 @@ impl File {
         }
     }
 
-    fn read(&mut self)-> PyResult<Vec<u8>> {
+    fn read(&mut self, py: Python)-> PyResult<PyBytes> {
         let mut buffer = Vec::new();
         self.file.read_to_end(&mut buffer).unwrap();
-        Ok(buffer)
+        Ok(PyBytes::new(py, &buffer))
     }
 }
 
